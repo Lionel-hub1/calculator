@@ -6,30 +6,24 @@
     <title>Calculator</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="flex justify-center text-white items-center h-screen">
-    <div class="max-w-sm w-full bg-[#1C1B21] rounded-xl overflow-hidden ">
+  <body class="flex justify-center text-white items-center h-screen bg-gray-200">
+    <div class="max-w-sm w-full bg-[#1C1B21] rounded-xl overflow-hidden">
       <div class="relative flex">
         <input
           class="bg-[#33313C] text-white w-full h-32 rounded-b-3xl px-5 text-2xl font-bold"
           type="text"
           id="result"
         />
-        <span class="absolute h-2 w-10 bg-[#C3C2CC] rounded-full bottom-2 right-0 left-0 mx-auto hover:cursor-pointer"></span>
+        <span
+          class="absolute h-2 w-10 bg-[#C3C2CC] rounded-full bottom-2 right-0 left-0 mx-auto hover:cursor-pointer"
+        ></span>
       </div>
       <div class="mx-10">
         <div class="flex flex-row justify-between items-center my-2">
-          <button class="w-10 h-10" onclick="calculateSquareRoot()">
-            √
-          </button>
-          <button class="w-10 h-10" onclick="calculateSquareRoot()">
-            &pi;
-          </button>
-          <button class="w-10 h-10" onclick="appendNumber('^')">
-            ^
-          </button>
-          <button class="w-10 h-10" onclick="calculatePower()">
-            !
-          </button>
+          <button class="w-10 h-10" onclick="calculateSquareRoot()">√</button>
+          <button class="w-10 h-10" onclick="setPi()">&pi;</button>
+          <button class="w-10 h-10" onclick="appendNumber('^')">^</button>
+          <button class="w-10 h-10" onclick="calculatePower()">!</button>
           <button
             class="w-6 h-6 rounded-full bg-[#26232C] p-2 flex items-center justify-center"
           >
@@ -51,80 +45,167 @@
           </button>
         </div>
         <div class="flex flex-row justify-between items-center my-3">
-          <button class="shadow-lg bg-[#623B4E] w-16 h-16 rounded-full" onclick="">AC</button>
-          <button class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full" onclick="">()</button>
-          <button class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full">%</button>
-          <button class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full" onclick="appendOperator('/')">
+          <button
+            class="shadow-lg bg-[#623B4E] w-16 h-16 rounded-full"
+            onclick=""
+          >
+            AC
+          </button>
+          <button
+            class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full"
+            onclick=""
+          >
+            ()
+          </button>
+          <button class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full">
+            %
+          </button>
+          <button
+            class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full"
+            onclick="appendOperator('/')"
+          >
             ÷
           </button>
         </div>
         <div class="flex flex-row justify-between items-center my-3">
-          <button class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full" onclick="appendNumber(7)">
+          <button
+            class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
+            onclick="appendNumber(7)"
+          >
             7
           </button>
-          <button class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full" onclick="appendNumber(8)">
+          <button
+            class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
+            onclick="appendNumber(8)"
+          >
             8
           </button>
-          <button class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full" onclick="appendNumber(9)">
+          <button
+            class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
+            onclick="appendNumber(9)"
+          >
             9
           </button>
-          <button class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full" onclick="appendOperator('*')">
+          <button
+            class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full"
+            onclick="appendOperator('*')"
+          >
             *
           </button>
         </div>
         <div class="flex flex-row justify-between items-center my-3">
-          <button class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full" onclick="appendNumber(4)">
+          <button
+            class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
+            onclick="appendNumber(4)"
+          >
             4
           </button>
-          <button class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full" onclick="appendNumber(5)">
+          <button
+            class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
+            onclick="appendNumber(5)"
+          >
             5
           </button>
-          <button class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full" onclick="appendNumber(6)">
+          <button
+            class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
+            onclick="appendNumber(6)"
+          >
             6
           </button>
-          <button class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full" onclick="appendOperator('-')">
+          <button
+            class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full"
+            onclick="appendOperator('-')"
+          >
             -
           </button>
         </div>
         <div class="flex flex-row justify-between items-center my-3">
-          <button class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full" onclick="appendNumber(1)">
+          <button
+            class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
+            onclick="appendNumber(1)"
+          >
             1
           </button>
-          <button class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full" onclick="appendNumber(2)">
+          <button
+            class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
+            onclick="appendNumber(2)"
+          >
             2
           </button>
-          <button class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full" onclick="appendNumber(3)">
+          <button
+            class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
+            onclick="appendNumber(3)"
+          >
             3
           </button>
-          <button class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full" onclick="appendOperator('+')">
+          <button
+            class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full"
+            onclick="appendOperator('+')"
+          >
             +
           </button>
         </div>
         <div class="flex flex-row justify-between items-center my-3">
-          <button class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full" onclick="appendNumber(0)">
+          <button
+            class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
+            onclick="appendNumber(0)"
+          >
             0
           </button>
-          <button class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full" onclick="appendOperator('.')">
+          <button
+            class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
+            onclick="appendOperator('.')"
+          >
             .
           </button>
-          <button class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full flex flex-row justify-center items-center" onclick="clear()">
-            <svg class="w-10 h-10" viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-              baseProfile="full" enable-background="new 0 0 76.00 76.00" xml:space="preserve" fill="#ffffff" stroke="#ffffff">
+          <button
+            class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full flex flex-row justify-center items-center"
+            onclick="deleteValue()"
+          >
+            <svg
+              class="w-10 h-10"
+              viewBox="0 0 76 76"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              version="1.1"
+              baseProfile="full"
+              enable-background="new 0 0 76.00 76.00"
+              xml:space="preserve"
+              fill="#ffffff"
+              stroke="#ffffff"
+            >
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
               <g id="SVGRepo_iconCarrier">
-                <path fill="#ffffff" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round"
-                  d="M 47.5282,42.9497L 42.5784,38L 47.5282,33.0502L 44.9497,30.4718L 40,35.4216L 35.0502,30.4718L 32.4718,33.0502L 37.4216,38L 32.4718,42.9497L 35.0502,45.5282L 40,40.5784L 44.9497,45.5282L 47.5282,42.9497 Z M 18.0147,41.5355L 26.9646,50.4854C 28.0683,51.589 29,52 31,52L 52,52C 54.7614,52 57,49.7614 57,47L 57,29C 57,26.2386 54.7614,24 52,24L 31,24C 29,24 28.0683,24.4113 26.9646,25.5149L 18.0147,34.4645C 16.0621,36.4171 16.0621,39.5829 18.0147,41.5355 Z M 31,49C 30,49 29.6048,48.8828 29.086,48.3641L 20.1361,39.4142C 19.355,38.6332 19.355,37.3669 20.1361,36.5858L 29.086,27.6362C 29.6048,27.1175 30,27 31,27.0001L 52,27.0001C 53.1046,27.0001 54,27.8955 54,29.0001L 54,47.0001C 54,48.1046 53.1046,49.0001 52,49.0001L 31,49 Z ">
-                </path>
+                <path
+                  fill="#ffffff"
+                  fill-opacity="1"
+                  stroke-width="0.2"
+                  stroke-linejoin="round"
+                  d="M 47.5282,42.9497L 42.5784,38L 47.5282,33.0502L 44.9497,30.4718L 40,35.4216L 35.0502,30.4718L 32.4718,33.0502L 37.4216,38L 32.4718,42.9497L 35.0502,45.5282L 40,40.5784L 44.9497,45.5282L 47.5282,42.9497 Z M 18.0147,41.5355L 26.9646,50.4854C 28.0683,51.589 29,52 31,52L 52,52C 54.7614,52 57,49.7614 57,47L 57,29C 57,26.2386 54.7614,24 52,24L 31,24C 29,24 28.0683,24.4113 26.9646,25.5149L 18.0147,34.4645C 16.0621,36.4171 16.0621,39.5829 18.0147,41.5355 Z M 31,49C 30,49 29.6048,48.8828 29.086,48.3641L 20.1361,39.4142C 19.355,38.6332 19.355,37.3669 20.1361,36.5858L 29.086,27.6362C 29.6048,27.1175 30,27 31,27.0001L 52,27.0001C 53.1046,27.0001 54,27.8955 54,29.0001L 54,47.0001C 54,48.1046 53.1046,49.0001 52,49.0001L 31,49 Z "
+                ></path>
               </g>
             </svg>
           </button>
-          <button class="shadow-lg bg-[#45447A] w-16 h-16 rounded-full" onclick="calculate()">=</button>
+          <button
+            class="shadow-lg bg-[#45447A] w-16 h-16 rounded-full"
+            onclick="calculate()"
+          >
+            =
+          </button>
         </div>
       </div>
     </div>
 
     <script>
+      function setPi() {
+        document.getElementById("result").value += Math.PI;
+      }
+
       function appendNumber(number) {
         document.getElementById("result").value += number;
       }
@@ -134,7 +215,7 @@
       }
 
       function calculate() {
-        if (document.getElementById("result").value.indexOf('^') > -1){
+        if (document.getElementById("result").value.indexOf("^") > -1) {
           calculatePower();
           return;
         }
@@ -143,10 +224,11 @@
         document.getElementById("result").value = result;
       }
 
-      function clear() {
-        // localStorage.clear();
+      function deleteValue() {
         const results = document.getElementById("result").value;
-        document.getElementById("result").value = results.split(' ').slice(0, -1);
+        document.getElementById("result").value = Array.from(results)
+          .slice(0, -1)
+          .join("");
       }
 
       function calculateSquareRoot() {
@@ -156,7 +238,6 @@
       }
 
       function calculatePower() {
-        console.log("calculatePower entered");
         const expression = document.getElementById("result").value;
         const parts = expression.split("^");
         const base = parseFloat(parts[0]);
