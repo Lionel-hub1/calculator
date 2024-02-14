@@ -10,12 +10,21 @@
     class="flex justify-center text-white items-center h-screen bg-gray-200"
   >
     <div class="max-w-sm w-full bg-[#1C1B21] rounded-xl overflow-hidden">
-      <div class="relative flex">
-        <input
-          class="bg-[#33313C] text-white w-full h-32 rounded-b-3xl px-5 text-2xl font-bold"
-          type="text"
-          id="result"
-        />
+      <div class="bg-[#33313C] relative flex">
+        <div class="flex flex-col mt-4 w-full">
+          <input
+            class="text-right bg-[#33313C] text-white w-full h-22 px-5 mt-12 text-xl font-bold focus:outline-none"
+            type="text"
+            id="result"
+            autofocus
+          />
+          <input
+            class="text-right bg-[#33313C] text-white w-full h-24 rounded-b-3xl px-5 text-5xl font-bold focus:outline-none"
+            type="text"
+            id="output"
+            readonly
+          />
+        </div>
         <span
           class="absolute h-2 w-10 bg-[#C3C2CC] rounded-full bottom-2 right-0 left-0 mx-auto hover:cursor-pointer"
         ></span>
@@ -40,8 +49,13 @@
         <div class="flex flex-row justify-between items-center my-2">
           <button class="w-10 h-10" onclick="calculateSquareRoot()">√</button>
           <button class="w-10 h-10" onclick="setPi()">&pi;</button>
-          <button class="w-10 h-10" onclick="appendNumber('^')">^</button>
-          <button class="w-10 h-10" onclick="calculatePower()">!</button>
+          <button class="w-10 h-10" onclick="writeCharacter('^')">^</button>
+          <button
+            class="w-10 h-10"
+            onclick="myFactorial(document.getElementById('result').value)"
+          >
+            !
+          </button>
           <button
             class="w-6 h-6 rounded-full bg-[#26232C] p-2 flex items-center justify-center"
           >
@@ -65,7 +79,7 @@
         <div class="flex flex-row justify-between items-center my-3">
           <button
             class="shadow-lg bg-[#623B4E] w-16 h-16 rounded-full"
-            onclick=""
+            onclick="clearScreen()"
           >
             AC
           </button>
@@ -75,12 +89,15 @@
           >
             ()
           </button>
-          <button class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full">
+          <button
+            class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full"
+            onclick="percentageCount()"
+          >
             %
           </button>
           <button
             class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full"
-            onclick="appendOperator('/')"
+            onclick="writeCharacter('/')"
           >
             ÷
           </button>
@@ -88,25 +105,25 @@
         <div class="flex flex-row justify-between items-center my-3">
           <button
             class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
-            onclick="appendNumber(7)"
+            onclick="writeCharacter(7)"
           >
             7
           </button>
           <button
             class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
-            onclick="appendNumber(8)"
+            onclick="writeCharacter(8)"
           >
             8
           </button>
           <button
             class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
-            onclick="appendNumber(9)"
+            onclick="writeCharacter(9)"
           >
             9
           </button>
           <button
             class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full"
-            onclick="appendOperator('*')"
+            onclick="writeCharacter('*')"
           >
             *
           </button>
@@ -114,25 +131,25 @@
         <div class="flex flex-row justify-between items-center my-3">
           <button
             class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
-            onclick="appendNumber(4)"
+            onclick="writeCharacter(4)"
           >
             4
           </button>
           <button
             class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
-            onclick="appendNumber(5)"
+            onclick="writeCharacter(5)"
           >
             5
           </button>
           <button
             class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
-            onclick="appendNumber(6)"
+            onclick="writeCharacter(6)"
           >
             6
           </button>
           <button
             class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full"
-            onclick="appendOperator('-')"
+            onclick="writeCharacter('-')"
           >
             -
           </button>
@@ -140,25 +157,25 @@
         <div class="flex flex-row justify-between items-center my-3">
           <button
             class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
-            onclick="appendNumber(1)"
+            onclick="writeCharacter(1)"
           >
             1
           </button>
           <button
             class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
-            onclick="appendNumber(2)"
+            onclick="writeCharacter(2)"
           >
             2
           </button>
           <button
             class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
-            onclick="appendNumber(3)"
+            onclick="writeCharacter(3)"
           >
             3
           </button>
           <button
             class="shadow-lg bg-[#48455A] w-16 h-16 rounded-full"
-            onclick="appendOperator('+')"
+            onclick="writeCharacter('+')"
           >
             +
           </button>
@@ -166,13 +183,13 @@
         <div class="flex flex-row justify-between items-center my-3">
           <button
             class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
-            onclick="appendNumber(0)"
+            onclick="writeCharacter(0)"
           >
             0
           </button>
           <button
             class="shadow-lg bg-[#26242C] w-16 h-16 rounded-full"
-            onclick="appendOperator('.')"
+            onclick="writeCharacter('.')"
           >
             .
           </button>
@@ -224,12 +241,21 @@
         document.getElementById("result").value += Math.PI;
       }
 
-      function appendNumber(number) {
-        document.getElementById("result").value += number;
+      function writeCharacter(character) {
+        document.getElementById("result").value += character;
       }
 
-      function appendOperator(operator) {
-        document.getElementById("result").value += operator;
+      function percentageCount() {
+        const number = document.getElementById("result").value;
+        const result = number / 100;
+        document.getElementById("output").value = result;
+      }
+
+      function myFactorial(number) {
+        for (let i = number - 1; i >= 1; i--) {
+          number *= i;
+        }
+        document.getElementById("output").value = number;
       }
 
       function calculate() {
@@ -239,7 +265,7 @@
         }
         const expression = document.getElementById("result").value;
         const result = eval(expression);
-        document.getElementById("result").value = result;
+        document.getElementById("output").value = result;
       }
 
       function deleteValue() {
@@ -249,10 +275,15 @@
           .join("");
       }
 
+      function clearScreen() {
+        document.getElementById("result").value = "";
+        document.getElementById("output").value = "";
+      }
+
       function calculateSquareRoot() {
         const number = document.getElementById("result").value;
         const result = Math.sqrt(number);
-        document.getElementById("result").value = result;
+        document.getElementById("output").value = result;
       }
 
       function calculatePower() {
@@ -261,7 +292,7 @@
         const base = parseFloat(parts[0]);
         const exponent = parseFloat(parts[1]);
         const result = Math.pow(base, exponent);
-        document.getElementById("result").value = result;
+        document.getElementById("output").value = result;
       }
     </script>
   </body>
